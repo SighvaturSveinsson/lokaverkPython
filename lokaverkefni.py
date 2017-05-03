@@ -1,5 +1,30 @@
 from random import *
 
+def leikmadurGerir():
+    for key, value in eval(leikmadur1[0]).items():
+        print(key)
+        for x in range(3):
+            print(x + 1, flokkar[x], value[x])
+        val = int(input("Hvaða spil eiginleika viltu velja (1-10)"))
+        print(value[val - 1])
+        spil.append(key)
+        spil.append(value[val - 1])
+        print(spil)
+        print("-------------------")
+
+def talvanGerir():
+    print("+++++++++")
+    for key, value in eval(leikmadur1[0]).items():
+        print(key)
+        for x in range(3):
+            print(x + 1, flokkar[x], value[x])
+        val2 = int(input("Hvaða spil eiginleika viltu velja (1-10)"))
+        print(value[val2 - 1])
+        spil.append(key)
+        spil.append(value[val2 - 1])
+        print(spil)
+        print("-------------------")
+
 hrutar = []
 with open ("hrutar.txt") as skra:
     for lina in skra:
@@ -15,18 +40,6 @@ for key,value in eval(hrutar[0]).items():
     print(int(value[0]),"  ",value[1]," ",value[2])
 flokkar = ["Þyngd", "Mjólkurlagni dætra", "Einkun ullar", ""]
 
-'''
-for i in dict:
-    print(i)
-    eiginleikar = []
-    teljari = 0
-    for x in dict[i]:
-        eiginleikar.append(x)
-        print(flokkar[teljari], eiginleikar[teljari])
-        teljari += 1
-    print("------------")
-'''
-
 print("********************")
 
 
@@ -40,18 +53,24 @@ while len(leikmadur1) != 3:
     if tala not in komnarTolur:
         komnarTolur.append(tala)
         leikmadur1.append(hrutar[tala])
-    else:
-        teljari = 0
-for i in range(3):
-    for key,value in eval(leikmadur1[i]).items():
-        print(key)
-        for x in range(3):
-            print(flokkar[x],value[x])
-        print("-------------------")
 
-print("+++++++++")
-for key, value in eval(leikmadur1[0]).items():
-    print(key)
-    for x in range(3):
-        print(x+1, flokkar[x], value[x])
-    print("Hvaða flokk viltu velja? ")
+
+
+
+flag = True
+if spil[1] > spil[3]:
+    print("Hrúturinn", spil[0], "á móti", spil[2])
+    print("Leikmaður vann")
+    flag = True
+elif spil[1] < spil[3]:
+    print("Hrúturinn", spil[0], "á móti", spil[2])
+    print("Talvan vann")
+    flag = True
+else:
+    print("jafntefli")
+    flag = False
+
+if flag != False:
+    for i in range(len(spil)):
+        spil.remove(spil[0])
+    print(spil)
